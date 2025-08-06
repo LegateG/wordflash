@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Flashcard Quiz</title>
+    <link rel="stylesheet" href="quiz-style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div class="welcome-screen" id="welcomeScreen">
+            <h1>🇪🇸 Spanish Flashcard Quiz</h1>
+            <p>Master 100 essential Spanish words through interactive flashcards!</p>
+            <p>Learning Phase: Study 20 cards by clicking to flip them</p>
+            <div class="error" id="errorMessage"></div>
+            <button class="start-btn" onclick="startQuiz()" id="startButton">
+                <span class="loading" id="loadingText">Loading dictionary...</span>
+                <span id="startText" style="display: none;">Start Learning</span>
+            </button>
+        </div>
+
+        <!-- Quiz Container -->
+        <div class="quiz-container" id="quizContainer">
+            <div class="quiz-header">
+                <div class="quiz-stats">
+                    <div class="stat">
+                        <div class="stat-value" id="currentCard">1</div>
+                        <div class="stat-label">Card</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="totalCards">20</div>
+                        <div class="stat-label">Total</div>
+                    </div>
+                </div>
+                <h2 class="phase-title" id="phaseTitle">Learning Phase</h2>
+                <p class="phase-subtitle" id="phaseSubtitle">Click cards to flip them</p>
+            </div>
+
+            <!-- Learning Phase -->
+            <div class="flashcard-container" id="learningPhase">
+                <div class="flashcard" id="flashcard">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            <div id="spanishWord">Loading...</div>
+                        </div>
+                        <div class="flashcard-back">
+                            <div id="englishWord">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="next-btn show" id="nextCardBtn" onclick="nextCard()">Next Card</button>
+            </div>
+
+            <!-- Quiz Phase Placeholder -->
+            <div class="quiz-phase" id="quizPhase" style="padding: 3rem; text-align: center;">
+                <h2 style="color: slateblue; margin-bottom: 2rem;">Quiz Phase Coming Soon!</h2>
+                <p style="font-size: 1.2rem; color: dimgray; margin-bottom: 2rem;">
+                    The multiple choice quiz will be implemented here.
+                </p>
+                <button class="restart-btn" onclick="restartQuiz()">Back to Welcome</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let dictionary = null;
+        let currentPhase = 'learning';
+        let currentCardIndex = 0;
+        let learningCards = [];
+        let isLoaded = false;
+
+        // Load dictionary on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            loadDictionary();
+        });
+
+        async function loadDictionary() {
+            try {
+                const response = await fetch('spanish-dictionary.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                dictionary = await response.json();
+                
+                if (!dictionary || !dictionary.words || dictionary.words.length === 0) {
+                    throw new Error('Invalid dictionary format or empty dictionary');
+                }
+                
+                // Dictionary loaded successfully
+                isLoaded = true;
+                document.getElementById('loadingText').style.display = 'none';
+                document.getElementById('startText').style.display = 'inline';
+                document.getElementById('startButton').disabled = false;
+                
+            } catch (error) {
+                console.error('Error loading dictionary:', error);
+                showError('Failed to load dictionary. Please make sure spanish-dictionary.json is in the same folder.');
+            }
+        }
+
+        function showError(message) {
+            const errorElement = document.getElementById('errorMessage');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            document.getElementById('loadingText').textContent = 'Error Loading';
+            document.getElementById('startButton').disabled = true;
+        }
+
+        function startQuiz() {
+            if (!isLoaded) {
+                showError('Dictionary is still loading. Please wait...');
+                return;
+            }
+            
+            // Hide welcome screen and show quiz container
+            document.getElementById('welcomeScreen').style.display = 'none';
+            document.getElementById('quizContainer').style.display = 'block';
+            
+            // Select 20 random words for learning phase
+            learningCards = getRandomWords(20);
+            
+            // Initialize learning phase
+            initializeLearningPhase();
+        }
+
+        function getRandomWords(count) {
+            const shuffled = [...dictionary.words].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+
+        function initializeLearningPhase() {
+            currentPhase = 'learning';
+            currentCardIndex = 0;
+            document.getElementById('learningPhase').style.display = 'block';
+            document.getElementById('quizPhase').style.display = 'none';
+            document.getElementById('phaseTitle').textContent = 'Learning Phase';
+            document.getElementById('phaseSubtitle').textContent = 'Click cards to flip them';
+            
+            showLearningCard();
+        }
+
+        function showLearningCard() {
+            if (currentCardIndex >= learningCards.length) {
+                showQuizPlaceholder();
+                return;
+            }
+
+            const card = learningCards[currentCardIndex];
+            const flashcard = document.getElementById('flashcard');
+            
+            // Reset flip state
+            flashcard.classList.remove('flipped');
+            
+            // Update card content
+            document.getElementById('spanishWord').textContent = card.spanish;
+            document.getElementById('englishWord').textContent = card.english;
+            
+            // Update progress
+            document.getElementById('currentCard').textContent = currentCardIndex + 1;
+        }
+
+        function nextCard() {
+            currentCardIndex++;
+            showLearningCard();
+        }
+
+        function flipCard() {
+            const flashcard = document.getElementById('flashcard');
+            flashcard.classList.toggle('flipped');
+        }
+
+        function showQuizPlaceholder() {
+            // Hide learning phase and show quiz placeholder
+            document.getElementById('learningPhase').style.display = 'none';
+            document.getElementById('quizPhase').style.display = 'block';
+            
+            // Update header
+            document.getElementById('phaseTitle').textContent = 'Quiz Phase';
+            document.getElementById('phaseSubtitle').textContent = 'Coming soon...';
+        }
+
+        function restartQuiz() {
+            // Reset all variables
+            currentPhase = 'learning';
+            currentCardIndex = 0;
+            
+            // Hide quiz phase and show welcome
+            document.getElementById('quizPhase').style.display = 'none';
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('welcomeScreen').style.display = 'block';
+        }
+
+        // Manual card flipping during learning phase
+        document.getElementById('flashcard').addEventListener('click', () => {
+            if (currentPhase === 'learning') {
+                flipCard();
+            }
+        });
+    </script>
+</body>
+</html>
