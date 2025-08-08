@@ -193,20 +193,131 @@
             flashcard.classList.toggle('flipped');
         }
 
-        function showQuizPlaceholder() {
-            // Hide learning phase and show quiz placeholder
+        function startQuizPhase() {
+            currentPhase = 'quiz';
+            currentQuestionIndex = 0;
+            score = 0;
+            
+            // Hide learning phase and show quiz phase
             document.getElementById('learningPhase').style.display = 'none';
             document.getElementById('quizPhase').style.display = 'block';
             
             // Update header
             document.getElementById('phaseTitle').textContent = 'Quiz Phase';
-            document.getElementById('phaseSubtitle').textContent = 'Coming soon...';
+            document.getElementById('phaseSubtitle').textContent = 'Choose the correct translation';
+            document.getElementById('totalCards').textContent = learningCards.length;
+            
+            // Use the same words from learning phase for quiz
+            quizQuestions = [...learningCards];
+            
+            showQuizQuestion();
+        }
+
+        function showQuizQuestion() {
+            if (currentQuestionIndex >= quizQuestions.length) {
+                showResults();
+                return;
+            }
+
+            const question = quizQuestions[currentQuestionIndex];
+            
+            // Update question
+            document.getElementById('quizWord').textContent = question.spanish;
+            document.getElementById('currentCard').textContent = currentQuestionIndex + 1;
+            
+            // Generate options (1 correct + 3 incorrect)
+            const options = generateOptions(question);
+            const optionElements = document.querySelectorAll('.option');
+            
+            optionElements.forEach((option, index) => {
+                option.textContent = options[index].text;
+                option.className = 'option'; // Reset classes
+                option.onclick = () => selectOption(option, index);
+            });
+            
+            // Hide next button
+            document.getElementById('nextBtn').classList.remove('show');
+        }
+
+        function generateOptions(correctWord) {
+            // Get 3 random incorrect answers from the full dictionary
+            const incorrect = dictionary.words
+                .filter(word => word.english !== correctWord.english)
+                .sort(() => 0.5 - Math.random())
+                .slice(0, 3);
+            
+            // Create options array with correct answer and 3 incorrect ones
+            const options = [
+                { text: correctWord.english, correct: true },
+                { text: incorrect[0].english, correct: false },
+                { text: incorrect[1].english, correct: false },
+                { text: incorrect[2].english, correct: false }
+            ];
+            
+            // Shuffle the options so correct answer isn't always in the same position
+            return options.sort(() => 0.5 - Math.random());
+        }
+
+        function selectOption(element, index) {
+            const options = document.querySelectorAll('.option');
+            const correctAnswer = quizQuestions[currentQuestionIndex].english;
+            const correctOption = Array.from(options).find(opt => opt.textContent === correctAnswer);
+            
+            // Disable all options to prevent multiple clicks
+            options.forEach(opt => opt.onclick = null);
+            
+            // Check if selected answer is correct
+            if (element.textContent === correctAnswer) {
+                element.classList.add('correct');
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                // Highlight the correct answer
+                correctOption.classList.add('correct');
+            }
+            
+            // Show next button after a short delay
+            setTimeout(() => {
+                document.getElementById('nextBtn').classList.add('show');
+            }, 1000);
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            showQuizQuestion();
+        }
+
+        function showResults() {
+            currentPhase = 'results';
+            
+            // Hide quiz phase and show results
+            document.getElementById('quizPhase').style.display = 'none';
+            document.getElementById('resultsScreen').style.display = 'block';
+            
+            // Update header
+            document.getElementById('phaseTitle').textContent = 'Results';
+            document.getElementById('phaseSubtitle').textContent = 'Great job completing the quiz!';
+            
+            // Calculate and display results
+            const totalQuestions = quizQuestions.length;
+            const correctAnswers = score;
+            const incorrectAnswers = totalQuestions - score;
+            const percentage = Math.round((score / totalQuestions) * 100);
+            
+            // Update results display with calculated values
+            document.getElementById('finalScore').textContent = percentage + '%';
+            document.getElementById('correctAnswers').textContent = correctAnswers;
+            document.getElementById('incorrectAnswers').textContent = incorrectAnswers;
         }
 
         function restartQuiz() {
             // Reset all variables
             currentPhase = 'learning';
             currentCardIndex = 0;
+            currentQuestionIndex = 0;
+            score = 0;
+            learningCards = [];
+            quizQuestions = [];
             
             // Hide quiz phase and show welcome
             document.getElementById('quizPhase').style.display = 'none';
