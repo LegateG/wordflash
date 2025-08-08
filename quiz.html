@@ -52,14 +52,36 @@
                 <button class="next-btn show" id="nextCardBtn" onclick="nextCard()">Next Card</button>
             </div>
 
-            <!-- Quiz Phase Placeholder -->
-            <div class="quiz-phase" id="quizPhase" style="padding: 3rem; text-align: center;">
-                <h2 style="color: slateblue; margin-bottom: 2rem;">Quiz Phase Coming Soon!</h2>
-                <p style="font-size: 1.2rem; color: dimgray; margin-bottom: 2rem;">
-                    The multiple choice quiz will be implemented here.
-                </p>
-                <button class="restart-btn" onclick="restartQuiz()">Back to Welcome</button>
+            <!-- Quiz Phase -->
+            <div class="quiz-phase" id="quizPhase">
+                <div class="question">
+                    What does <span class="question-word" id="quizWord">Loading...</span> mean in English?
+                </div>
+                <div class="options" id="options">
+                    <button class="option" onclick="selectOption(this, 0)">Option 1</button>
+                    <button class="option" onclick="selectOption(this, 1)">Option 2</button>
+                    <button class="option" onclick="selectOption(this, 2)">Option 3</button>
+                    <button class="option" onclick="selectOption(this, 3)">Option 4</button>
+                </div>
+                <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Next Question</button>
             </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div class="results-screen" id="resultsScreen">
+            <h2 class="results-title">🎉 Quiz Complete!</h2>
+            <div class="score-display" id="finalScore">85%</div>
+            <div class="results-stats">
+                <div class="result-stat">
+                    <div class="result-stat-value" id="correctAnswers">17</div>
+                    <div class="result-stat-label">Correct</div>
+                </div>
+                <div class="result-stat">
+                    <div class="result-stat-value" id="incorrectAnswers">3</div>
+                    <div class="result-stat-label">Incorrect</div>
+                </div>
+            </div>
+            <button class="restart-btn" onclick="restartQuiz()">Study Again</button>
         </div>
     </div>
 
