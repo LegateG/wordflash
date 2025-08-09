@@ -1,3 +1,59 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome Page</title>
+  <link rel="stylesheet" href="CSSFILEHERE">
+</head>
+<body>
+<script src="JSFILEHERE"></script>
+ 
+  <header>
+    <h2>User Accomplishments</h2>
+    <p id="accomplishments">Words Learned: 0 | Quizzes Completed: 0</p>
+    <div id="recentUsers">
+      <strong>Recent Users:</strong>
+      <ul id="userList">
+      </ul>
+    </div>
+  </header>
+ 
+     <!-- main will have world map background image -->
+  <main>
+    <h1>Welcome to WordFlash</h1>
+ 
+    <div class="btn-container">
+      <button onclick="selectUser('new')">New User</button>
+      <button onclick="selectUser('current')">Current User</button>
+    </div>
+ 
+    <div class="input-area hidden" id="nameInputArea">
+      <p id="promptText"></p>
+      <input type="text" id="userName" placeholder="Enter your name" />
+      <br><br>
+      <button onclick="submitName()">Continue</button>
+    </div>
+  </main>
+ 
+   <!-- footer will have flags background image -->
+  <footer class="FOOTERIMAGEHERE">
+    <div class="subscriptionBox">
+      <label for="Subscribe"></label>
+      <p>
+      <h4>Subscribe to be the first to know when we add new learning method.</h4>
+      </p>
+      <input type="email" id="Subscribe" name="Subscribe" placeholder="Enter your email" pattern="@" required>
+      <button type="submit">Subscribe</button>
+      <br><br><br><br><br>
+      <h3>© 2025 WordFlash. All rights reserved.</h3>
+    </div>
+  </footer>
+ 
+ 
+</body>
+</html>
+=======
 <!DOCTYPE html>
 <html lang="en">
 
@@ -118,3 +174,4 @@
 </body>
 
 </html>
+>>>>>>> feature/homepage-update
