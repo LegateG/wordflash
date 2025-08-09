@@ -80,8 +80,8 @@ body {
 }
 /* Skip Button */
 .skip-btn {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
+    background: coral;
+    color: whitesmoke;
     border: 2px solid rgba(255, 255, 255, 0.3);
     padding: 10px 20px;
     border-radius: 25px;
@@ -89,11 +89,14 @@ body {
     font-size: 1rem;
     margin-top: 20px;
     transition: all 0.3s ease;
+    display: block;
+    margin: 20px auto 0 auto;
+    width: fit-content;
 }
 
 .skip-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-    border-color: rgba(255, 255, 255, 0.5);
+    background: mediumpurple;
+    border-color: silver;
     transform: translateY(-2px);
 }
 /* Quiz Container */
@@ -205,6 +208,7 @@ body {
     height: 250px;
     perspective: 1000px;
     cursor: pointer;
+    margin: 0 auto;
 }
 
 .flashcard-inner {
