@@ -79,7 +79,8 @@ function initializeLearningPhase() {
     document.getElementById('learningPhase').style.display = 'block';
     document.getElementById('quizPhase').style.display = 'none';
     document.getElementById('timerDisplay').style.display = 'block';
-    document.getElementById('skipBtn').style.display = 'block';
+    const skipBtn = document.getElementById('skipBtn');
+    if (skipBtn) skipBtn.style.display = 'block';
     document.getElementById('phaseTitle').textContent = 'Learning Phase';
     document.getElementById('phaseSubtitle').textContent = 'Cards will auto-flip after 3-5 seconds';
     
