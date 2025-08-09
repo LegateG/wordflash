@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Flashcard Quiz</title>
+    <link rel="stylesheet" href="quiz-style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div class="welcome-screen" id="welcomeScreen">
+            <h1>Spanish Flashcard Quiz</h1>
+            <p>Master essential Spanish words through interactive flashcards!</p>
+            <p><strong>Learning Phase:</strong> Study 20 cards with auto-flip timing (3-5 seconds per card)</p>
+            <p><strong>Quiz Phase:</strong> Test your knowledge with multiple choice questions</p>
+            <div class="error" id="errorMessage"></div>
+            <button class="start-btn" onclick="startQuiz()" id="startButton">
+                <span class="loading" id="loadingText">Loading dictionary...</span>
+                <span id="startText" style="display: none;">Start Learning</span>
+            </button>
+        </div>
+
+        <!-- Quiz Container -->
+        <div class="quiz-container" id="quizContainer">
+            <div class="quiz-header">
+                <div class="quiz-stats">
+                    <div class="stat">
+                        <div class="stat-value" id="currentCard">1</div>
+                        <div class="stat-label">Card</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="totalCards">20</div>
+                        <div class="stat-label">Total</div>
+                    </div>
+                    <div class="stat" id="scoreStat" style="display: none;">
+                        <div class="stat-value" id="currentScore">0</div>
+                        <div class="stat-label">Score</div>
+                    </div>
+                </div>
+                <h2 class="phase-title" id="phaseTitle">Learning Phase</h2>
+                <p class="phase-subtitle" id="phaseSubtitle">Cards will auto-flip after 3-5 seconds</p>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <!-- Timer Display -->
+            <div class="timer-display" id="timerDisplay">
+                <div class="timer" id="timer">5</div>
+                <div class="timer-label" id="timerLabel">seconds remaining</div>
+            </div>
+
+            <!-- Learning Phase -->
+            <div class="flashcard-container" id="learningPhase">
+                <div class="flashcard" id="flashcard">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            <div id="spanishWord">Loading...</div>
+                        </div>
+                        <div class="flashcard-back">
+                            <div id="englishWord">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="skip-btn" id="skipBtn" onclick="confirmSkip()">Skip to Quiz</button>
+            </div>
+
+            <!-- Quiz Phase -->
+            <div class="quiz-phase" id="quizPhase">
+                <div class="question">
+                    What does <span class="question-word" id="quizWord">Loading...</span> mean in English?
+                </div>
+                <div class="options" id="options">
+                    <button class="option" onclick="selectOption(this, 0)">Option 1</button>
+                    <button class="option" onclick="selectOption(this, 1)">Option 2</button>
+                    <button class="option" onclick="selectOption(this, 2)">Option 3</button>
+                    <button class="option" onclick="selectOption(this, 3)">Option 4</button>
+                </div>
+                <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div class="results-screen" id="resultsScreen">
+            <h2 class="results-title">Quiz Complete!</h2>
+            <div class="score-display" id="finalScore">85%</div>
+            <div class="results-stats">
+                <div class="result-stat">
+                    <div class="result-stat-value" id="correctAnswers" style="color: #2ed573;">17</div>
+                    <div class="result-stat-label">Correct</div>
+                </div>
+                <div class="result-stat">
+                    <div class="result-stat-value" id="incorrectAnswers" style="color: #ff4757;">3</div>
+                    <div class="result-stat-label">Incorrect</div>
+                </div>
+                <div class="result-stat">
+                    <div class="result-stat-value" id="totalTime" style="color: #667eea;">2:34</div>
+                    <div class="result-stat-label">Total Time</div>
+                </div>
+            </div>
+            <button class="restart-btn" onclick="restartQuiz()">Study Again</button>
+        </div>
+    </div>
+    <script src="quiz-script.js"></script>
+</body>
+</html>
