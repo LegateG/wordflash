@@ -43,8 +43,9 @@ function submitName() {
 
   // Redirect the user to the quiz page
   const inSubpage = window.location.pathname.includes("/assets/subpages/");
-  const target = inSubpage ? "../quiz/quiz.html" : "assets/quiz/quiz.html";
+  const target = inSubpage ? "quiz/quiz.html" : "assets/subpages/quiz/quiz.html";
   window.location.href = target;
+
 
 
 
