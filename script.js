@@ -24,6 +24,8 @@ function selectUser(type) {
   document.getElementById("userName").focus();
 }
 
+
+
 // For name submission
 function submitName() {
   const nameEl = document.getElementById("userName");
@@ -35,12 +37,15 @@ function submitName() {
     return;
   }
 
-  const greetMessage = (userType === "new")
-    ? `Welcome, ${name}! Your quiz will begin shortly.`
-    : `Welcome back, ${name}! Your quiz will begin shortly.`;
+  // Store the user's name in localStorage
+  localStorage.setItem('userName', name);
 
-  alert(greetMessage);
-  console.log(greetMessage);
+
+  // Redirect the user to the quiz page
+  const inSubpage = window.location.pathname.includes("/assets/subpages/");
+  const target = inSubpage ? "../quiz/quiz.html" : "assets/quiz/quiz.html";
+  window.location.href = target;
+
 
 
 
