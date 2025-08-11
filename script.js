@@ -1,11 +1,7 @@
 let userType = "";
 let recentUsers = [];
 
-<<<<<<< HEAD
-// Show popup and hide homepage elements 
-=======
 // Show popup and hide homepage elements (without shifting footer)
->>>>>>> main
 function selectUser(type) {
   userType = type;
 
@@ -20,11 +16,7 @@ function selectUser(type) {
   // Lock background scroll
   document.body.style.overflow = "hidden";
 
-<<<<<<< HEAD
-  // Hide elements but keep space 
-=======
   // Hide elements but keep space (avoid footer shift)
->>>>>>> main
   document.querySelector(".body-container")?.classList.add("hide-keep-space");
   document.getElementById("statusText")?.classList.add("hide-keep-space");
 
@@ -104,11 +96,7 @@ function goBackHome() {
   closeModal();
 }
 
-<<<<<<< HEAD
-// Footer Ramdom words section
-=======
 // Footer section
->>>>>>> main
 document.addEventListener("DOMContentLoaded", () => {
   const mostUsedWord = "hola";
   const suggestions = ["amigo", "learn", "rápido", "study"];
