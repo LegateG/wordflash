@@ -1,30 +1,36 @@
 let userType = "";
 let recentUsers = [];
 
-// Show popup and hide homepage elements
+<<<<<<< HEAD
+// Show popup and hide homepage elements 
+=======
+// Show popup and hide homepage elements (without shifting footer)
+>>>>>>> main
 function selectUser(type) {
   userType = type;
 
   const prompt = (type === "new")
     ? "Welcome, Learner!"
     : "Welcome back, Learner!";
-
   document.getElementById("promptText").textContent = prompt;
 
   const modal = document.getElementById("nameModal");
   modal.classList.remove("hidden");
 
-  // Lock background scroll so the modal stays centered
+  // Lock background scroll
   document.body.style.overflow = "hidden";
 
-  document.querySelector(".body-container")?.classList.add("hidden");
-  document.getElementById("statusText")?.classList.add("hidden");
+<<<<<<< HEAD
+  // Hide elements but keep space 
+=======
+  // Hide elements but keep space (avoid footer shift)
+>>>>>>> main
+  document.querySelector(".body-container")?.classList.add("hide-keep-space");
+  document.getElementById("statusText")?.classList.add("hide-keep-space");
 
-  // Focus the popup
+  // Focus input
   document.getElementById("userName").focus();
 }
-
-
 
 // For name submission
 function submitName() {
@@ -37,19 +43,15 @@ function submitName() {
     return;
   }
 
-  // Store the user's name in localStorage
+  // Store in localStorage
   localStorage.setItem('userName', name);
 
-
-  // Redirect the user to the quiz page
+  // Redirect to quiz page
   const inSubpage = window.location.pathname.includes("/assets/subpages/");
-  const target = inSubpage ? "../quiz/quiz.html" : "assets/quiz/quiz.html";
+  const target = inSubpage ? "quiz/quiz.html" : "assets/subpages/quiz/quiz.html";
   window.location.href = target;
 
-
-
-
-  // accomplishments section
+  // Update accomplishments
   document.getElementById("accomplishments").innerHTML =
     `📖 Words Learned: 15 <br> 🏆 Quizzes Completed: 3 <br> 📊 Average Score: 75%`;
 
@@ -57,9 +59,8 @@ function submitName() {
   closeModal();
 }
 
-// Update recent users list (keep max 5, newest first)
+// Update recent users list (max 5, newest first)
 function updateRecentUsers(name) {
-  // De-duplicate by case-insensitive match
   recentUsers = [name, ...recentUsers.filter(u => u.toLowerCase() !== name.toLowerCase())];
   if (recentUsers.length > 5) recentUsers = recentUsers.slice(0, 5);
 
@@ -72,15 +73,17 @@ function updateRecentUsers(name) {
   });
 }
 
-
-// Close modal function
+// Close modal
 function closeModal() {
   document.getElementById("nameModal").classList.add("hidden");
-  document.body.style.overflow = ""; // restore scrolling
+  document.body.style.overflow = ""; // Restore scrolling
+
+  // Show elements again
+  document.querySelector(".body-container")?.classList.remove("hide-keep-space");
+  document.getElementById("statusText")?.classList.remove("hide-keep-space");
+
   const nameEl = document.getElementById("userName");
   if (nameEl) nameEl.value = "";
-  document.querySelector(".body-container")?.classList.remove("hidden");
-  document.getElementById("statusText")?.classList.remove("hidden");
 }
 
 // Click outside modal closes it
@@ -96,16 +99,16 @@ window.addEventListener("keydown", e => {
   }
 });
 
-// Go Back to home from inside modal
+// Go Back button
 function goBackHome() {
   closeModal();
 }
 
-
-
-
+<<<<<<< HEAD
+// Footer Ramdom words section
+=======
 // Footer section
-// Set Word of the Day and Suggested Word
+>>>>>>> main
 document.addEventListener("DOMContentLoaded", () => {
   const mostUsedWord = "hola";
   const suggestions = ["amigo", "learn", "rápido", "study"];

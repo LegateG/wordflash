@@ -1,12 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spanish Flashcard Quiz</title>
     <link rel="stylesheet" href="quiz-style.css">
 </head>
+
 <body>
+
+
+    <!--  header with logo-->
+    <header>
+        <div class="welcome-box">
+            <a href="../../../index.html" class="logo-container">
+                <img src="/assets/images/logoWhite.png" alt="WordFlash Logo" class="header-logo" />
+            </a>
+            <span class="fade-text" id="text1">Master new words with Flashcards!</span>
+        </div>
+    </header>
+
+
+    <!--  header - slim banner -->
+    <header class="slim-banner">
+        <div class="banner-content">
+            <a href="../../../index.html" class="home-btn">Back to Home</a>
+            <img src="/assets/images/USA.png" alt="USA" class="flag" title="English (USA)">
+            <img src="/assets/images/GBA.png" alt="UK" class="flag" title="English (UK)">
+
+            <h2 class="banner-text">Learn English and Spanish in minutes!</h2>
+
+            <img src="/assets/images/SPA.png" alt="Spain" class="flag" title="Español (Spain)">
+            <img src="/assets/images/MXC.png" alt="Mexico" class="flag" title="Español (Mexico)">
+        </div>
+    </header>
+
+
+
+
+
+
+
     <div class="container">
         <!-- Welcome Screen -->
         <div class="welcome-screen" id="welcomeScreen">
@@ -105,6 +140,43 @@
             <button class="restart-btn" onclick="restartQuiz()">Study Again</button>
         </div>
     </div>
+
+
+
+    <!-- Pre-footer banner -->
+<div class="pre-footer">
+  <div class="footer-displays">
+    <div class="word-box">
+      <h4>Word of the Day</h4>
+      <p id="wordOfDay">Loading...</p>
+    </div>
+
+    <div class="word-box">
+      <h4>Suggested Word</h4>
+      <p id="suggestedWord">Loading...</p>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footerImage">
+  <div class="footer-links">
+    <ul>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../policy.html">Policy</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-bottom"><br><br>
+    <h3>© 2025 WordFlash. Learn Smarter.</h3>
+  </div>
+</footer>
+
+
+
     <script src="quiz-script.js"></script>
+    <script src="../../script.js"></script>
 </body>
+
 </html>
