@@ -25,38 +25,7 @@
   }
 }
 
-<<<<<<< HEAD
-.hide-keep-space {
-  visibility: hidden;
-  pointer-events: none;
-}
-
-
-body {
-  overflow-y: scroll;
-}
-
-
-
-body {
-  font-family: var(--user-font-style);
-  margin: 0;
-
-  /* Updated background */
-  background:
-    url("assets/images/imgbackground2.png") center / cover no-repeat,
-    var(--user-bg-color);
-  background-attachment: scroll, scroll;  
-  color: #000;
-}
-
-
-
-html,
-body {
-=======
  html, body { 
->>>>>>> main
   height: 100%;
   margin: 0;
   padding: 0;
@@ -337,12 +306,6 @@ input[type="text"] {
 
 
 /* Pre Footer and Footer styling */
-<<<<<<< HEAD
-.pre-footer {
-  background-color: #49388e65;
-  padding: 40px 0;           
-  width: 100%;
-=======
 /* Pre Footer and Footer styling */
 .pre-footer {
   background-color: #49388e65;
@@ -351,7 +314,6 @@ input[type="text"] {
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   max-width: 100vw;
->>>>>>> main
   margin-top: 70px;       
   text-align: center;
 }
@@ -390,17 +352,12 @@ footer {
   background-color: var(--index-gray);
   color: #fcfcfc;
   text-align: center;
-<<<<<<< HEAD
-  width: 100%;
-  padding: 40px 0;          
-=======
   width: 100vw; /* full viewport width */
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   max-width: 100vw;
   padding: 40px 0;          
   margin-top: auto; /* keep footer at bottom if content is short */
->>>>>>> main
 }
 .footerImage {
   display: flex;
@@ -446,15 +403,8 @@ footer {
 }
 
 
-<<<<<<< HEAD
-@media (max-width: 480px) {
-  .word-box { width: 160px; }
-  .footer-links ul { gap: 16px; }
-}
-=======
 
 @media (max-width: 480px) {
   .word-box { width: 160px; }
   .footer-links ul { gap: 16px; }
 }
->>>>>>> main
