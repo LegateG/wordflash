@@ -13,10 +13,22 @@ let totalStartTime = 0;
 let quizTimer = null;
 let quizTimePerQuestion = 30; // 30 seconds per question
 
+// Function to retrieve and display the user's name
+function displayUserName() {
+    const userName = localStorage.getItem('userName');
+    const userNameDisplay = document.getElementById('userNameDisplay');
+    
+    if (userName && userNameDisplay) {
+        userNameDisplay.textContent = userName;
+    }
+}
+
 // Load dictionary on page load
 window.addEventListener('DOMContentLoaded', function() {
     loadDictionary();
+    displayUserName();
 });
+
 
 async function loadDictionary() {
     try {
@@ -375,4 +387,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
