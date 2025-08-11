@@ -1,8 +1,4 @@
 
-<<<<<<< HEAD
-=======
-
->>>>>>> main
 {
   "words": [
     { "spanish": "hola", "english": "hello", "category": "greetings" },
@@ -115,8 +111,5 @@
     { "spanish": "lluvia", "english": "rain", "category": "weather" },
     { "spanish": "nieve", "english": "snow", "category": "weather" }
   ]
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> main
+
