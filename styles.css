@@ -404,8 +404,91 @@ footer {
 
 
 
-@media (max-width: 480px) {
+
+
+
+/* Mobile tweaks */
+@media (max-width: 450px) {
   .word-box { width: 160px; }
   .footer-links ul { gap: 16px; }
 }
 
+
+h1, .fade-text, .banner-text {
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+/* More mobile tweaks */
+@media (max-width: 550px) {
+  /* Header area */
+  .welcome-box {
+    min-height: 56px;
+    padding: 8px 12px;
+    gap: 8px;
+    flex-wrap: wrap;            
+    justify-content: center;
+  }
+  .logo-container { position: static; }
+  .header-logo { max-height: 36px; height: auto; }
+
+  /* Header title */
+  .fade-text {
+    font-size: clamp(16px, 4.5vw, 22px);
+    line-height: 1.2;
+    margin: 0;
+    text-align: center;
+  }
+
+  /* Slim banner*/
+  .slim-banner {
+    padding: 4px 6px;
+    min-height: auto;
+  }
+  .banner-content {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+  }
+  .banner-text {
+    font-size: clamp(12px, 3.5vw, 16px);
+    white-space: normal;       
+    text-align: center;
+  }
+  .flag { height: 18px; width: auto; }
+
+  /* Hero heading inside <main> */
+  main h1 {
+    font-size: clamp(20px, 5.5vw, 28px);
+    line-height: 1.2;
+    margin: 12px 10px 8px;
+    padding: 0 6px;          
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  /* Buttons: on small screens */
+  .body-container button {
+    width: 44vw;
+    max-width: 220px;
+    height: 56px;
+    border-radius: 12px;
+    font-size: 16px;
+  }
+
+  /* Accomplishments card: no overlap */
+  .user-accomplishment {
+    position: static;          
+    max-width: 100%;
+    margin: 16px 10px 0;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 360px) {
+  .body-container button {
+    width: 100%;
+    max-width: none;
+  }
+}
