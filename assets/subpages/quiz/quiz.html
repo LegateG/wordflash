@@ -109,7 +109,10 @@
                         </div>
                     </div>
                 </div>
-                <button class="skip-btn" id="skipBtn" onclick="confirmSkip()">Skip to Quiz</button>
+                <div class="learning-controls">
+                    <button class="restart-learning-btn" onclick="restartLearningPhase()">Restart Learning</button>
+                    <button class="skip-btn" id="skipBtn" onclick="confirmSkip()">Skip to Quiz</button>
+                </div>
             </div>
 
             <!-- Quiz Phase -->
@@ -144,6 +147,10 @@
                     <div class="result-stat-value" id="totalTime" style="color: #667eea;">2:34</div>
                     <div class="result-stat-label">Total Time</div>
                 </div>
+            </div>
+            <div class="incorrect-answers-list" id="incorrectAnswersList" style="display: none;">
+                <h3>Incorrect Answers:</h3>
+                <ul id="wrongWords"></ul>
             </div>
             <button class="restart-btn" onclick="restartQuiz()">Study Again</button>
         </div>

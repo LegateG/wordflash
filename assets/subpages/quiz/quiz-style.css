@@ -253,7 +253,30 @@ body {
     border-radius: 10px;
     margin: 20px 0;
 }
+.learning-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
 
+.restart-learning-btn {
+    background: transparent;
+    color: mediumpurple;
+    border: 2px solid mediumpurple;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.restart-learning-btn:hover {
+    background: mediumpurple;
+    color: whitesmoke;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(100, 149, 237, 0.2);
+}
 /* Skip Button */
 .skip-btn {
     background: var(--index-green);
@@ -263,11 +286,12 @@ body {
     border-radius: 25px;
     cursor: pointer;
     font-size: 1rem;
+/* Commenting out margin properties, as they are now handled by .learning-controls
     margin-top: 20px;
     transition: all 0.3s ease;
     display: block;
     margin: 20px auto 0 auto;
-    width: fit-content;
+    width: fit-content; */
 }
 
 .skip-btn:hover {
@@ -589,6 +613,59 @@ body {
     box-shadow: 0 10px 30px rgba(100, 149, 237, 0.4);
 }
 
+.incorrect-answers-list {
+    margin-top: 40px;
+    padding: 20px;
+    background: #f7f9fc;
+    border-radius: 15px;
+    text-align: left;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.incorrect-answers-list h3 {
+    color: darkslategray;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#wrongWords {
+    list-style-type: none;
+    padding: 0;
+    columns: 2; /* Display as two columns on wider screens */
+    column-gap: 30px;
+}
+
+#wrongWords li {
+    background: #ffebe6;
+    border-left: 5px solid crimson;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+#wrongWords li:hover {
+    background: #ffdddd;
+    transform: translateX(5px);
+}
+
+#wrongWords .spanish {
+    font-weight: bold;
+    color: crimson;
+}
+
+#wrongWords .english {
+    color: dimgray;
+    font-size: 0.9rem;
+    margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+    #wrongWords {
+        columns: 1; /* Switch to a single column on mobile */
+    }
+}
+
 /* Animations */
 @keyframes fadeIn {
     from {
@@ -764,18 +841,6 @@ body {
 }
 
 
-/* Pre Footer and Footer styling */
-.pre-footer {
-    background-color: #49388e65;
-    padding: 40px 0;
-    width: 100vw;
-    /* full viewport width */
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-    max-width: 100vw;
-    margin-top: 70px;
-    text-align: center;
-}
 
 .footer-displays {
     display: flex;
@@ -807,21 +872,6 @@ body {
     color: var(--index-gray);
 }
 
-/* Main footer */
-footer {
-    position: relative;
-    background-color: var(--index-gray);
-    color: #fcfcfc;
-    text-align: center;
-    width: 100vw;
-    /* full viewport width */
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-    max-width: 100vw;
-    padding: 40px 0;
-    margin-top: auto;
-    /* keep footer at bottom if content is short */
-}
 
 .footerImage {
     display: flex;
@@ -871,19 +921,6 @@ footer {
 
 
 
-
-/* Mobile tweaks */
-@media (max-width: 450px) {
-    .word-box {
-        width: 160px;
-    }
-
-    .footer-links ul {
-        gap: 16px;
-    }
-}
-
-
 h1,
 .fade-text,
 .banner-text {
@@ -895,66 +932,3 @@ h1,
 
 
 
-/* More mobile tweaks */
-@media (max-width: 550px) {
-
-    /* Header area */
-    .welcome-box {
-        min-height: 56px;
-        padding: 8px 12px;
-        gap: 8px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .logo-container {
-        position: static;
-    }
-
-    .header-logo {
-        max-height: 36px;
-        height: auto;
-    }
-
-    /* Header title */
-    .fade-text {
-        font-size: clamp(16px, 4.5vw, 22px);
-        line-height: 1.2;
-        margin: 0;
-        text-align: center;
-    }
-
-    /* Base banner */
-    .slim-banner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-        height: auto; 
-        padding: 6px 8px;
-        flex-direction: column; /* mobile: stack items */
-        align-items: center;
-        justify-content: center;
-    }
-
-    .banner-content {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 6px;
-        order: 1;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .home-btn {
-        background: #2e8b57;
-        color: #fff;
-        text-decoration: none;
-        padding: 6px 12px;
-        border-radius: 8px;
-        order: 2;
-        margin-bottom: 60px;
-        width: auto;
-    }
-}

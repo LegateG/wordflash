@@ -12,6 +12,9 @@ let currentTime = 0;
 let totalStartTime = 0;
 let quizTimer = null;
 let quizTimePerQuestion = 30; // 30 seconds per question
+let questionStartTime = 0;
+let quizQuestionTimes = [];
+let wrongAnswers = [];
 
 // Function to retrieve and display the user's name
 function displayUserName() {
@@ -61,7 +64,11 @@ function showError(message) {
     document.getElementById('loadingText').textContent = 'Error Loading';
     document.getElementById('startButton').disabled = true;
 }
-
+function restartLearningPhase() {
+    clearInterval(cardTimer);
+    currentCardIndex = 0;
+    initializeLearningPhase();
+}
 function startQuiz() {
     if (!isLoaded) {
         showError('Dictionary is still loading. Please wait...');
@@ -71,6 +78,8 @@ function startQuiz() {
     // Hide welcome screen and show quiz container
     document.getElementById('welcomeScreen').style.display = 'none';
     document.getElementById('quizContainer').style.display = 'block';
+    // Making sure the learning controls are visible
+    document.getElementById('learningPhase').style.display = 'block';
     
     // Select 20 random words for learning phase
     learningCards = getRandomWords(20);
@@ -191,7 +200,9 @@ function startQuizPhase() {
     
     // Use the same words from learning phase for quiz
     quizQuestions = [...learningCards];
-    
+    quizQuestionTimes = []; // Reset the times array
+    wrongAnswers = []; // Reset the wrong answers array for a new quiz
+
     showQuizQuestion();
 }
 
@@ -229,6 +240,7 @@ function showQuizQuestion() {
 
 function startQuizTimer() {
     currentTime = quizTimePerQuestion;
+    questionStartTime = Date.now(); // Record the start time of the question
     
     const timerElement = document.getElementById('timer');
     const timerLabel = document.getElementById('timerLabel');
@@ -288,6 +300,9 @@ function selectOption(element, index) {
     // Stop the quiz timer
     clearInterval(quizTimer);
     
+    // Calculate and store the time spent on this question
+    const questionTime = (Date.now() - questionStartTime) / 1000;
+    quizQuestionTimes.push(questionTime);
     const options = document.querySelectorAll('.option');
     
     // Disable all options to prevent multiple clicks
@@ -302,6 +317,9 @@ function selectOption(element, index) {
         document.getElementById('currentScore').textContent = score;
     } else {
         element.classList.add('incorrect');
+        // Add the wrong answer to the list
+        const question = quizQuestions[currentQuestionIndex];
+        wrongAnswers.push(question);
         // Highlight the correct answer
         options.forEach(opt => {
             if (opt.getAttribute('data-correct') === 'true') {
@@ -349,7 +367,45 @@ function showResults() {
     document.getElementById('correctAnswers').textContent = correctAnswers;
     document.getElementById('incorrectAnswers').textContent = incorrectAnswers;
     document.getElementById('totalTime').textContent = timeString;
+
+    // Find and remove any existing average time element to prevent duplicates
+    const resultsStatsContainer = document.querySelector('.results-stats');
+    const existingAvgTime = document.getElementById('avgTimeDisplay');
+    if (existingAvgTime) {
+        existingAvgTime.remove();
+    }
+
+    // Calculate average time
+    const totalQuestionTime = quizQuestionTimes.reduce((sum, time) => sum + time, 0);
+    const averageTime = totalQuestionTime / quizQuestionTimes.length;
+    
+    // Create the HTML element for the average time display
+    const avgTimeDisplay = document.createElement('div');
+    avgTimeDisplay.id = 'avgTimeDisplay'; // Give it a unique ID for easy removal
+    avgTimeDisplay.className = 'result-stat';
+    avgTimeDisplay.innerHTML = `<div class="result-stat-value" style="color: #667eea;">${averageTime.toFixed(1)}s</div><div class="result-stat-label">Avg. Time per Q</div>`;
+    
+    // Append the new element to the results stats section
+    resultsStatsContainer.appendChild(avgTimeDisplay);
+    // Display the list of wrong answers
+    if (wrongAnswers.length > 0) {
+        const listContainer = document.getElementById('incorrectAnswersList');
+        const ul = document.getElementById('wrongWords');
+        ul.innerHTML = ''; // Clear previous results
+        
+        wrongAnswers.forEach(word => {
+            const li = document.createElement('li');
+            li.innerHTML = `<span class="spanish">${word.spanish}</span> -> <span class="english">${word.english}</span>`;
+            ul.appendChild(li);
+        });
+        
+        listContainer.style.display = 'block';
+    } else {
+        // Hide the container if there were no wrong answers
+        document.getElementById('incorrectAnswersList').style.display = 'none';
+    }
 }
+
 
 function restartQuiz() {
     // Clear any running timers
