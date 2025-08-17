@@ -1,4 +1,5 @@
 
+
 {
   "words": [
     { "spanish": "hola", "english": "hello", "category": "greetings" },
@@ -112,4 +113,3 @@
     { "spanish": "nieve", "english": "snow", "category": "weather" }
   ]
 }
-
