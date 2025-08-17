@@ -23,26 +23,18 @@
 
 
     <!--  header - slim banner -->
-  <header class="slim-banner">
-  <div class="banner-content">
-    <div class="flags flags-left">
-      <img src="../../images/USA.png" alt="USA" class="flag" title="English (USA)">
-      <img src="../../images/GBA.png" alt="UK"  class="flag" title="English (UK)">
-    </div>
+    <header class="slim-banner">
+        <div class="banner-content">
+            <a href="../../../index.html" class="home-btn">Back to Home</a>
+            <img src="/assets/images/USA.png" alt="USA" class="flag" title="English (USA)">
+            <img src="/assets/images/GBA.png" alt="UK" class="flag" title="English (UK)">
 
-    <h2 class="banner-text">Learn English and Spanish in minutes!</h2>
+            <h2 class="banner-text">Learn English and Spanish in minutes!</h2>
 
-    <div class="flags flags-right">
-      <img src="../../images/SPA.png" alt="Spain"  class="flag" title="Español (Spain)">
-      <img src="../../images/MXC.png" alt="Mexico" class="flag" title="Español (Mexico)">
-    </div>
-  </div>
-
-  <a href="../../../index.html" class="home-btn">Back to Home</a>
-</header>
-
-
-
+            <img src="/assets/images/SPA.png" alt="Spain" class="flag" title="Español (Spain)">
+            <img src="/assets/images/MXC.png" alt="Mexico" class="flag" title="Español (Mexico)">
+        </div>
+    </header>
 
 
 
@@ -109,7 +101,10 @@
                         </div>
                     </div>
                 </div>
-                <button class="skip-btn" id="skipBtn" onclick="confirmSkip()">Skip to Quiz</button>
+                <div class="learning-controls">
+                    <button class="restart-learning-btn" onclick="restartLearningPhase()">Restart Learning</button>
+                    <button class="skip-btn" id="skipBtn" onclick="confirmSkip()">Skip to Quiz</button>
+                </div>
             </div>
 
             <!-- Quiz Phase -->
@@ -145,6 +140,10 @@
                     <div class="result-stat-label">Total Time</div>
                 </div>
             </div>
+            <div class="incorrect-answers-list" id="incorrectAnswersList" style="display: none;">
+                <h3>Incorrect Answers:</h3>
+                <ul id="wrongWords"></ul>
+            </div>
             <button class="restart-btn" onclick="restartQuiz()">Study Again</button>
         </div>
     </div>
@@ -152,39 +151,40 @@
 
 
     <!-- Pre-footer banner -->
-<div class="pre-footer">
-  <div class="footer-displays">
-    <div class="word-box">
-      <h4>Word of the Day</h4>
-      <p id="wordOfDay">Loading...</p>
+    <div class="pre-footer">
+        <div class="footer-displays">
+            <div class="word-box">
+                <h4>Word of the Day</h4>
+                <p id="wordOfDay">Loading...</p>
+            </div>
+
+            <div class="word-box">
+                <h4>Suggested Word</h4>
+                <p id="suggestedWord">Loading...</p>
+            </div>
+        </div>
     </div>
 
-    <div class="word-box">
-      <h4>Suggested Word</h4>
-      <p id="suggestedWord">Loading...</p>
-    </div>
-  </div>
-</div>
+    <!-- Footer -->
+    <footer class="footerImage">
+        <div class="footer-links">
+            <ul>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../policy.html">Policy</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </div>
 
-<!-- Footer -->
-<footer class="footerImage">
-  <div class="footer-links">
-    <ul>
-      <li><a href="../about.html">About</a></li>
-      <li><a href="../policy.html">Policy</a></li>
-      <li><a href="../contact.html">Contact</a></li>
-    </ul>
-  </div>
-
-  <div class="footer-bottom"><br><br>
-    <h3>© 2025 WordFlash. Learn Smarter.</h3>
-  </div>
-</footer>
+        <div class="footer-bottom"><br><br>
+            <h3>© 2025 WordFlash. Learn Smarter.</h3>
+        </div>
+    </footer>
 
 
 
+    <script src="../script.js"></script>
     <script src="quiz-script.js"></script>
-    <script src="../../script.js"></script>
+
 </body>
 
 </html>

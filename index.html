@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <title>Welcome Page</title>
   <link rel="stylesheet" href="styles.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
 </head>
-
-
-
 <body>
-
-  <!--  header with logo-->
+  <!-- header with logo -->
   <header>
     <div class="welcome-box">
       <a href="index.html" class="logo-container">
@@ -22,30 +17,29 @@
     </div>
   </header>
 
-
-  <!--  header - slim banner -->
+  <!-- header - slim banner -->
   <header class="slim-banner">
     <div class="banner-content">
       <img src="/assets/images/USA.png" alt="USA" class="flag" title="English (USA)">
       <img src="/assets/images/GBA.png" alt="UK" class="flag" title="English (UK)">
-
       <h2 class="banner-text">Learn English and Spanish in minutes!</h2>
-
       <img src="/assets/images/SPA.png" alt="Spain" class="flag" title="Español (Spain)">
       <img src="/assets/images/MXC.png" alt="Mexico" class="flag" title="Español (Mexico)">
     </div>
   </header>
 
-
   <!-- body with background image -->
-  <main>
+  <section class="image-box">
+    <div class="image-box__inner">
+      <img src="assets/images/imgbackground2.png" alt="Decorative" class="image-box__img">
+    </div>
+  </section>
 
+  <main>
     <div id="nameModal" class="modal hidden">
       <div class="modal-content">
         <p id="promptText"></p>
         <input type="text" id="userName" placeholder="Enter your name" />
-
-        <!-- user select buttons -->
         <div class="modal-buttons">
           <button onclick="submitName()">Start Quiz</button>
           <button class="go-back-btn" onclick="goBackHome()">Back to Home</button>
@@ -53,39 +47,49 @@
       </div>
     </div>
 
-
     <!-- Home Texts -->
     <div class="body-container">
-      <h3 style="font-weight: normal;" id="statusText" class="status-text">
-        Ready to expand your vocabulary? <br>
-        Start a new WordFlash quiz and <br> challenge yourself with 20 words. </h3><br>
-      <h3 id="statusText" class="status-text">Select Your Status!</h3>
-      <button onclick="selectUser('new')">New User</button>
-      <button onclick="selectUser('current')">Current User</button>
-
-
+      <h3 id="statusText" class="status-text">
+        Ready to expand your vocabulary? <br><br>
+        Start a new WordFlash quiz and <br> challenge yourself with 20 words.
+      </h3><br>
+      <button onclick="selectUser()">Start Learning</button>
     </div>
 
-    <!-- User Accomplishments -->
-    <section class="user-accomplishment">
-      <h2>User Accomplishments</h2>
-
-      <p id="accomplishments">
-        📖 Words Learned: 0 &nbsp; | &nbsp;
-        🏆 Quizzes Completed: 0 &nbsp; | &nbsp;
-        📊 Average Score: 0%
-      </p>
-
-      <div id="recentUsers">
-        <strong>Recent Users:</strong>
-        <ul id="userList"></ul>
+    <!-- User Accomplishments (Dashboard Card) -->
+    <section class="ua-card" id="uaCard">
+      <div class="ua-head">
+        <h3 id="uaTitle">User Accomplishments</h3>
+        <span class="ua-sub" id="uaSub">—</span>
       </div>
+      <div class="ua-grid">
+        <div class="ua-tile">
+          <div class="ua-label">📖 Words Learned</div>
+          <div class="ua-value" id="uaWords">0</div>
+          <div class="ua-delta" id="uaWordsDelta">+0</div>
+        </div>
+        <div class="ua-tile">
+          <div class="ua-label">🏆 Quizzes Completed</div>
+          <div class="ua-value" id="uaQuizzes">0</div>
+          <div class="ua-delta" id="uaQuizzesDelta">+0</div>
+        </div>
+        <div class="ua-tile ua-donut-tile">
+          <div class="ua-donut" id="uaDonut" style="--p:0; --accent:#6b7bff;"></div>
+          <div class="ua-donut-label">
+            <span id="uaAvg">0%</span>
+            <small>📊 Average Score</small>
+          </div>
+        </div>
+        <div class="ua-tile">
+          <div class="ua-label">Recent Scores</div>
+          <div class="ua-bars" id="uaBars"></div>
+          <div class="ua-bars-legend">
+            <small>last 7 quizzes</small>
+          </div>
+        </div>
+      </div>
+      <div class="ua-foot" id="uaFoot">Showing latest activity</div>
     </section>
-
-
-
-    <!-- footer section -->
-    <main>
 
     <!-- Pre-footer -->
     <div class="pre-footer">
@@ -94,7 +98,6 @@
           <h4>Word of the Day</h4>
           <p id="wordOfDay">Loading...</p>
         </div>
-
         <div class="word-box">
           <h4>Suggested Word</h4>
           <p id="suggestedWord">Loading...</p>
@@ -115,10 +118,11 @@
         <h3>© 2025 WordFlash. Learn Smarter.</h3>
       </div>
     </footer>
-
+    
 
     <script src="script.js"></script>
+  
 
+  </main>
 </body>
-
 </html>
