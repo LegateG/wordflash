@@ -613,6 +613,59 @@ body {
     box-shadow: 0 10px 30px rgba(100, 149, 237, 0.4);
 }
 
+.incorrect-answers-list {
+    margin-top: 40px;
+    padding: 20px;
+    background: #f7f9fc;
+    border-radius: 15px;
+    text-align: left;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.incorrect-answers-list h3 {
+    color: darkslategray;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#wrongWords {
+    list-style-type: none;
+    padding: 0;
+    columns: 2; /* Display as two columns on wider screens */
+    column-gap: 30px;
+}
+
+#wrongWords li {
+    background: #ffebe6;
+    border-left: 5px solid crimson;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+#wrongWords li:hover {
+    background: #ffdddd;
+    transform: translateX(5px);
+}
+
+#wrongWords .spanish {
+    font-weight: bold;
+    color: crimson;
+}
+
+#wrongWords .english {
+    color: dimgray;
+    font-size: 0.9rem;
+    margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+    #wrongWords {
+        columns: 1; /* Switch to a single column on mobile */
+    }
+}
+
 /* Animations */
 @keyframes fadeIn {
     from {
