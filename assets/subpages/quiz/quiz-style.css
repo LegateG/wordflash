@@ -80,8 +80,8 @@ main {
     height: 40px;
     display: flex;
     align-items: center;
-    justify-content: center; 
-    position: relative; 
+    justify-content: center;
+    position: relative;
     overflow: hidden;
     z-index: 10;
     flex-shrink: 0;
@@ -111,7 +111,7 @@ main {
 /* Home button styling */
 .home-btn {
     position: absolute;
-    left: 10px; 
+    left: 10px;
     background-color: var(--index-green);
     color: white;
     padding: 5px 12px;
@@ -144,13 +144,13 @@ body {
 }
 
 .hide-keep-space {
-  visibility: hidden;
-  pointer-events: none;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 
 body {
-  overflow-y: scroll;
+    overflow-y: scroll;
 }
 
 
@@ -841,107 +841,92 @@ body {
 }
 
 
-/* Pre Footer and Footer styling */
-.pre-footer {
-  background-color: #49388e65;
-  padding: 40px 0;           
-  width: 100vw; /* full viewport width */
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  max-width: 100vw;
-  margin-top: 70px;       
-  text-align: center;
-}
 
 .footer-displays {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
 }
 
 /* Word boxes */
 .word-box {
-  background-color: hsla(46, 78%, 58%, 0.799);
-  border: 2px solid var(--index-blue);
-  border-radius: 10px;
-  padding: 12px;
-  width: 180px;              
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  text-align: center;
-}
-.word-box h4 {
-  margin: 0 0 8px;
-  font-size: 18px;
-  color: var(--index-blue);
-}
-.word-box p {
-  font-size: 16px;
-  font-weight: bold;
-  color: var(--index-gray);
+    background-color: hsla(46, 78%, 58%, 0.799);
+    border: 2px solid var(--index-blue);
+    border-radius: 10px;
+    padding: 12px;
+    width: 180px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
-/* Main footer */
-footer {
-  position: relative;
-  background-color: var(--index-gray);
-  color: #fcfcfc;
-  text-align: center;
-  width: 100vw; /* full viewport width */
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  max-width: 100vw;
-  padding: 40px 0;          
-  margin-top: auto; /* keep footer at bottom if content is short */
+.word-box h4 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    color: var(--index-blue);
 }
+
+.word-box p {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--index-gray);
+}
+
+
 .footerImage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
 /* Footer links */
 .footer-links ul {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;           
-  gap: 28px;                 
-  list-style: none;
-  padding: 0;
-  margin: 8px 0 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 28px;
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0;
 }
+
 .footer-links li a {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 16px;
-  transition: color 0.3s ease;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s ease;
 }
+
 .footer-links li a:hover,
 .footer-links li a:focus {
-  color: var(--index-green);
-  outline: none;
+    color: var(--index-green);
+    outline: none;
 }
 
 /* Footer bottom text */
 .footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.15); 
-  margin-top: 12px;
-  padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin-top: 12px;
+    padding-top: 12px;
 }
+
 .footer-bottom h3 {
-  font-weight: normal;
-  font-size: 0.95rem;
-  margin: 0;
-  padding: 0 10px;
+    font-weight: normal;
+    font-size: 0.95rem;
+    margin: 0;
+    padding: 0 10px;
 }
 
 
 
-@media (max-width: 480px) {
-  .word-box { width: 160px; }
-  .footer-links ul { gap: 16px; }
+h1,
+.fade-text,
+.banner-text {
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+    white-space: normal;
 }
 
 
