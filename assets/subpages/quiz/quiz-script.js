@@ -61,7 +61,11 @@ function showError(message) {
     document.getElementById('loadingText').textContent = 'Error Loading';
     document.getElementById('startButton').disabled = true;
 }
-
+function restartLearningPhase() {
+    clearInterval(cardTimer);
+    currentCardIndex = 0;
+    initializeLearningPhase();
+}
 function startQuiz() {
     if (!isLoaded) {
         showError('Dictionary is still loading. Please wait...');
@@ -71,6 +75,8 @@ function startQuiz() {
     // Hide welcome screen and show quiz container
     document.getElementById('welcomeScreen').style.display = 'none';
     document.getElementById('quizContainer').style.display = 'block';
+    // Making sure the learning controls are visible
+    document.getElementById('learningPhase').style.display = 'block';
     
     // Select 20 random words for learning phase
     learningCards = getRandomWords(20);
